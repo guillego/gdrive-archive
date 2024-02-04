@@ -1,5 +1,5 @@
 # GdriveArchive
-WIP: Nothing really yet
+WIP: I have a very messy and full google drive. I want to clean it up and archive all the things that are nice to have but I don't access often.
 
 AIM: To run some sort of pipelines that allows someone to see all the files they have in gdrive and decide what to do with them:
 - keep -> maintain a file where it is
