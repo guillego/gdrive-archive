@@ -5,7 +5,7 @@ defmodule GdriveArchive.Gdrive do
 
   def list_all_files do
     stream_file_list()
-    |> Stream.map(&Map.take(&1, [:id, :mimeType, :parents, :size, :name]))
+    |> Stream.map(&Map.take(&1, [:id, :mimeType, :parents, :md5Checksum, :size, :name]))
     |> Stream.each(fn file -> IO.puts("File: #{inspect(file)}") end)
     |> Stream.run()
   end
@@ -37,7 +37,7 @@ defmodule GdriveArchive.Gdrive do
       includeItemsFromAllDrives: true,
       supportsAllDrives: true,
       corpora: "allDrives",
-      fields: "nextPageToken, files(id, mimeType, size, parents, name)",
+      fields: "nextPageToken, files(id, mimeType, size, md5Checksum, parents, name)",
       pageToken: page_token
     ]
 
