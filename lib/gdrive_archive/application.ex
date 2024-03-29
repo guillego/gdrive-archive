@@ -12,6 +12,7 @@ defmodule GdriveArchive.Application do
     GdriveArchive.Gdrive.list_all_files()
 
     children = [
+      GdriveArchive.Repo
       # Starts a worker by calling: GdriveArchive.Worker.start_link(arg)
       # {GdriveArchive.Worker, arg}
       # {Task, fn -> GdriveArchive.Gdrive.list_all_files() end}

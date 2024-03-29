@@ -26,3 +26,6 @@ gdrive_archive-*.tar
 /tmp/
 
 .env.*
+
+# Project files
+.gdrive_archive/*
