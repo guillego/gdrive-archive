@@ -6,14 +6,27 @@ defmodule GdriveArchive.Application do
   use Application
   require Logger
 
+  defp load_google_application_credentials() do
+    credentials =
+      "GOOGLE_APPLICATION_CREDENTIALS"
+      |> System.fetch_env!()
+      |> File.read!()
+      |> Jason.decode!()
+
+    credentials
+  end
+
   @impl true
   def start(_type, _args) do
     Logger.info("Starting supervision tree")
     # GdriveArchive.Gdrive.list_all_files()
 
-    children = [
+    source = {:service_account, load_google_application_credentials(), scopes: ["https://www.googleapis.com/auth/drive"]}
+
+       children = [
       GdriveArchive.Repo,
-      {Task, fn -> GdriveArchive.Indexer.execute() end}
+      {Goth, name: GdriveArchive.Goth, source: source},
+      # {Task, fn -> GdriveArchive.Indexer.execute() end}
       # Starts a worker by calling: GdriveArchive.Worker.start_link(arg)
       # {GdriveArchive.Worker, arg}
       # {Task, fn -> GdriveArchive.Gdrive.list_all_files() end}
