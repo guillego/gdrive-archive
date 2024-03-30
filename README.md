@@ -11,6 +11,16 @@ AIM: To run some sort of pipelines that allows someone to see all the files they
 - **29/03**: Add database, migrations and schemas, add file normalization
 - **30/03**: Add Indexer module, fix small issues, run indexing job
 
+## TODOs
+- Implement a way to reconstruct file trees from db (recursive CTEs?)
+- Implement a way to identify duplicates and a UI to go through them and select which of them to keep (if any)
+- Design a simple keyboard-based navigation UI (LiveView, TUI?) where information is well presented and actions are decided:
+  - a(rchive): These will be marked for migration to a different storage location i.e S3 cold storage)
+  - d(elete): These will be marked for deletion
+  - k(eep): These will stay in gdrive
+- Implement the above, it will probably need new db schemas to store that information
+- Implement the jobs to execute the actions from the view
+
 ## Thoughts
 - The hard part is triaging/pruning through all the files. The right level of granularity might be different. Some directories like `photography/raw` are just structured directories of raw files so they can be managed in bulk. Other directories are big mixes of all sorts of files (think of your `Downloads` folder).
 Need to figure out a good tool to go through these.
