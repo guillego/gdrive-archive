@@ -26,10 +26,7 @@ defmodule GdriveArchive.Application do
        children = [
       GdriveArchive.Repo,
       {Goth, name: GdriveArchive.Goth, source: source},
-      # {Task, fn -> GdriveArchive.Indexer.execute() end}
-      # Starts a worker by calling: GdriveArchive.Worker.start_link(arg)
-      # {GdriveArchive.Worker, arg}
-      # {Task, fn -> GdriveArchive.Gdrive.list_all_files() end}
+      {Task, fn -> GdriveArchive.Indexer.execute() end}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
