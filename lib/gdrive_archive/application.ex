@@ -9,10 +9,11 @@ defmodule GdriveArchive.Application do
   @impl true
   def start(_type, _args) do
     Logger.info("Starting supervision tree")
-    GdriveArchive.Gdrive.list_all_files()
+    # GdriveArchive.Gdrive.list_all_files()
 
     children = [
-      GdriveArchive.Repo
+      GdriveArchive.Repo,
+      {Task, fn -> GdriveArchive.Indexer.execute() end}
       # Starts a worker by calling: GdriveArchive.Worker.start_link(arg)
       # {GdriveArchive.Worker, arg}
       # {Task, fn -> GdriveArchive.Gdrive.list_all_files() end}
