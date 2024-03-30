@@ -27,7 +27,8 @@ defmodule GdriveArchive.MixProject do
       {:ecto_sql, "~> 3.11"},
       {:ecto_sqlite3, "~> 0.14"},
       {:google_api_drive, "~> 0.25.1"},
-      {:goth, "~> 1.2"}
+      {:goth, "~> 1.4"},
+      {:jason, "~> 1.4"}
     ]
   end
 end
