@@ -1,4 +1,4 @@
-defmodule GdriveArchive.Dumper do
+defmodule GdriveArchive.Indexer do
   @batch_size 20
 
   alias GdriveArchive.Gdrive
