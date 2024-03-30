@@ -3,6 +3,15 @@ defmodule GdriveArchive.Gdrive do
   alias GoogleApi.Drive.V3.Api.Files
   require Logger
 
+  @default_file %{
+    parent: nil,
+    mime_type: nil,
+    size: nil,
+    checksum: nil,
+    name: nil,
+    id: nil
+  }
+
   def list_all_files do
     stream_file_list()
     |> Stream.map(&normalize_map(&1))
@@ -18,7 +27,7 @@ defmodule GdriveArchive.Gdrive do
   defp normalize_map(map) do
     map
     |> Map.take([:id, :mimeType, :parents, :md5Checksum, :size, :name])
-    |> Enum.reduce(%{}, fn {key, value}, acc ->
+    |> Enum.reduce(@default_file, fn {key, value}, acc ->
       case key do
         :mimeType -> Map.put(acc, :mime_type, value)
         :md5Checksum -> Map.put(acc, :checksum, value)
