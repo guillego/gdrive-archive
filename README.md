@@ -7,9 +7,9 @@ AIM: To run some sort of pipelines that allows someone to see all the files they
 - archive -> archive in s3 cold storage or equivalent. Ideally it would also remap it to a new location in the archive.
 
 ## Progress
-**04/02**: Define project, implement gdrive API file retrieval
-**29/03**: Add database, migrations and schemas, add file normalization
-**30/03**: Add Indexer module, fix small issues, run indexing job
+- **04/02**: Define project, implement gdrive API file retrieval
+- **29/03**: Add database, migrations and schemas, add file normalization
+- **30/03**: Add Indexer module, fix small issues, run indexing job
 
 ## Thoughts
 - The hard part is triaging/pruning through all the files. The right level of granularity might be different. Some directories like `photography/raw` are just structured directories of raw files so they can be managed in bulk. Other directories are big mixes of all sorts of files (think of your `Downloads` folder).
