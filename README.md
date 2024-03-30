@@ -20,9 +20,3 @@ gdrive provides with an md5Checksum which should be used to prevent duplicates f
   - gdrive tells you the parent of a file, but we have multiple levels of nesting so a relational db might not be the best way to encode this. If you simply store all the data to a sqlite, what sort of query would you need to run to establish all the levels of nesting? Perhaps I can do some research on this, I'm sure there's known ways to encode it without going too over board.
 
 - After that process, some sort of db persists the actions to be performed and then a job can be run to perform them.
-
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/gdrive_archive>.
-
