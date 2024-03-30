@@ -74,8 +74,8 @@ defmodule GdriveArchive.Gdrive do
   end
 
   defp gdrive_authorization!() do
-    {:ok, token} = Goth.fetch(GdriveArchive.Goth)
-    token
+    {:ok, goth_token} = Goth.fetch(GdriveArchive.Goth)
+    goth_token.token
   end
 
   defp fetch_and_return_next_page(conn, page_token, token) do
