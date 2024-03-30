@@ -5,4 +5,4 @@ config :gdrive_archive,
 
 config :gdrive_archive, GdriveArchive.Repo,
   adapter: Ecto.Adapters.SQLite3,
-  database: ".gdrive_archive/db.sqlite3"
+  database: "_storage/db.sqlite3"

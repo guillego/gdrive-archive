@@ -28,4 +28,4 @@ gdrive_archive-*.tar
 .env.*
 
 # Project files
-.gdrive_archive/*
+_storage/*
