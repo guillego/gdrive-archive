@@ -13,6 +13,6 @@ defmodule GdriveArchive.Indexer do
   end
 
   defp save_batch_of_files(files) do
-    Repo.insert_all(File, files)
+    Repo.insert_all(File, files, on_conflict: :nothing, conflict_target: :id)
   end
 end
