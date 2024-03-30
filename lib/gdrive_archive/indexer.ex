@@ -8,7 +8,8 @@ defmodule GdriveArchive.Indexer do
   def execute() do
     Gdrive.stream_all_files()
     |> Stream.chunk_every(@batch_size)
-    |> save_batch_of_files()
+    |> Stream.map(&save_batch_of_files/1)
+    |> Stream.run()
   end
 
   defp save_batch_of_files(files) do
