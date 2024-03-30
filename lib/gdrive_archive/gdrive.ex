@@ -5,12 +5,30 @@ defmodule GdriveArchive.Gdrive do
 
   def list_all_files do
     stream_file_list()
-    |> Stream.map(&Map.take(&1, [:id, :mimeType, :parents, :md5Checksum, :size, :name]))
-    # |> Stream.filter(fn x -> x.parents != nil and length(x.parents) > 1 end)
-    |> Stream.map(fn x -> if(x.parents != nil, do: Map.put_new(x,:parent, Enum.at(x.parents,0)), else: Map.put_new(x,:parent, nil)) end)
+    |> Stream.map(&normalize_map(&1))
     |> Stream.each(fn file -> IO.puts("File: #{inspect(file)}") end)
     |> Stream.run()
   end
+
+  def stream_all_files do
+    stream_file_list()
+    |> Stream.map(&normalize_map(&1))
+  end
+
+  defp normalize_map(map) do
+    map
+    |> Map.take([:id, :mimeType, :parents, :md5Checksum, :size, :name])
+    |> Enum.reduce(%{}, fn {key, value}, acc ->
+      case key do
+        :mimeType -> Map.put(acc, :mime_type, value)
+        :md5Checksum -> Map.put(acc, :checksum, value)
+        :parents -> if value != nil, do: Map.put(acc, :parent, Enum.at(value, 0)), else: Map.put(acc, :parent, nil)
+        :size -> if value != nil, do: Map.put(acc, :size, String.to_integer(value)), else: Map.put(acc, :parent, nil)
+        _ -> Map.put(acc, key, value)
+      end
+    end)
+  end
+
 
   def stream_file_list do
     {:ok, %{token: token}} = Goth.Token.for_scope("https://www.googleapis.com/auth/drive")
