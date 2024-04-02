@@ -10,6 +10,7 @@ AIM: To run some sort of pipelines that allows someone to see all the files they
 - **04/02**: Define project, implement gdrive API file retrieval
 - **29/03**: Add database, migrations and schemas, add file normalization
 - **30/03**: Add Indexer module, fix small issues, run indexing job
+- **02/04**: Implement tree builder and aggregate sizes at every tree level.
 
 ## TODOs
 - Implement a way to reconstruct file trees from db (recursive CTEs?)
@@ -35,3 +36,7 @@ gdrive provides with an md5Checksum which should be used to prevent duplicates f
   - gdrive tells you the parent of a file, but we have multiple levels of nesting so a relational db might not be the best way to encode this. If you simply store all the data to a sqlite, what sort of query would you need to run to establish all the levels of nesting? Perhaps I can do some research on this, I'm sure there's known ways to encode it without going too over board.
 
 - After that process, some sort of db persists the actions to be performed and then a job can be run to perform them.
+
+- It took me a bit to realise how simple the implementation is for going from a flat node list to a tree. I guess TDD would've been the best approach for such a function, perhaps I could continue adding tests and using TDD in my next steps.
+
+- Next step I think will be the LiveView, which means I need to add Phoenix to this already existing project... Perhaps I should build it as an umbrella? Otherwise I can go the TUI way, but I want to improve my LV skills so LiveView it is.
